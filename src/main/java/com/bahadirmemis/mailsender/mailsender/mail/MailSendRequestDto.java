@@ -1,4 +1,4 @@
-package com.bahadirmemis.mailsender.mailsender.mail.dto;
+package com.bahadirmemis.mailsender.mailsender.mail;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MailSendRequestDto {
 
     private String emailAddress;

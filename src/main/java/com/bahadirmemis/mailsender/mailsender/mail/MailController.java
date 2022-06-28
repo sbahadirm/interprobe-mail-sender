@@ -1,6 +1,6 @@
 package com.bahadirmemis.mailsender.mailsender.mail;
 
-import com.bahadirmemis.mailsender.mailsender.mail.dto.MailSendRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/v1/mails")
+@RequiredArgsConstructor
 public class MailController {
+
+    private final MailService mailService;
 
     @GetMapping("/default-mail-address")
     public String getMailAddress(){
@@ -30,6 +33,13 @@ public class MailController {
     public boolean sendMail(@RequestBody MailSendRequestDto mailSendRequestDto){
 
         System.out.println(mailSendRequestDto);
+
+        for (int i = 0; i < 10; i++){
+
+            mailSendRequestDto.setBody(mailSendRequestDto.getBody() + "-" + i);
+
+            mailService.sendMail(mailSendRequestDto);
+        }
 
         return true;
     }
